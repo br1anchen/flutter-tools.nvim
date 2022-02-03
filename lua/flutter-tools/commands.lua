@@ -127,8 +127,15 @@ function M.run(opts)
   executable.get(function(paths)
     local args = cli_args or {}
     if not cli_args then
-      if not M.use_debugger_runner() then vim.list_extend(args, { "run" }) end
-      if not cmd_args and device and device.id then vim.list_extend(args, { "-d", device.id }) end
+      if not M.use_debugger_runner() then
+        vim.list_extend(args, { "run" })
+      end
+      if not cmd_args and device and device.id then
+        vim.list_extend(args, { "-d", device.id })
+        if device.platfrom == "web-javascript" then
+          vim.list_extend(args, { "--web-renderer", "html" })
+        end
+      end
 
       if cmd_args then vim.list_extend(args, cmd_args) end
 
