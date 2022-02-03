@@ -98,8 +98,8 @@ function M.select_device(args)
     else
       if args then
         vim.list_extend(args, { "-d", device.id })
-        print("device.platform" .. device.platfrom)
-        if device.platfrom == "web-javascript" then
+        print("device.platform" .. device.platform)
+        if device.platform == "web-javascript" then
           vim.list_extend(args, { "--web-renderer", "html" })
         end
         require("flutter-tools.commands").run({ cli_args = args })
