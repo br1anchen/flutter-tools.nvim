@@ -132,9 +132,6 @@ function M.run(opts)
       end
       if not cmd_args and device and device.id then
         vim.list_extend(args, { "-d", device.id })
-        if device.platfrom == "web-javascript" then
-          vim.list_extend(args, { "--web-renderer", "html" })
-        end
       end
 
       if cmd_args then vim.list_extend(args, cmd_args) end
